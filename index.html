@@ -21,16 +21,12 @@
                         <div class="row">
                             <form id="task-form">
                                 <div class="input-field col s12">
-                                    <input type="text" name="task" id="task">
-                                    <label for="task">First Name</label>
+                                    <input type="text" name="fname" id="fname">
+                                    <label for="fname">First Name</label>
                                 </div>
                                 <div class="input-field col s12">
-                                    <input type="text" name="task" id="task">
-                                    <label for="task">Last Name</label>
-                                </div>
-                                <div class="input-field col s12">
-                                    <input type="text" name="task" id="task">
-                                    <label for="task">Reg Date</label>
+                                    <input type="text" name="lname" id="lname">
+                                    <label for="lname">Last Name</label>
                                 </div>
                                 <button type="submit" class="btn"><i class="fa fa-user"></i> Add User</button>
                             </form>
@@ -42,7 +38,16 @@
                             <input type="text" name="filter" id="filter">
                             <label for="filter">Search Users</label>
                         </div>
-                        <ul class="collection"></ul>
+                        <table class="highlight table">
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Reg Date</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                        </table>
                         <a href="#" class="clear-tasks btn black"><i class="fa fa-user"></i> Delete All Users</a>
                     </div>
                 </div>
