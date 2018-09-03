@@ -140,6 +140,7 @@ function addUsers(e) {
 
 // Store in local storage function
 function storeInLocalStorage(fname, lname, regDate) {
+    
     let users;
     if(localStorage.getItem('users') === null) {
         users = [];
