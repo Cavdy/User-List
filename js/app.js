@@ -1,7 +1,7 @@
 // Define UI's Variables
 const form = document.querySelector('#task-form');
 const userList = document.querySelector('.table');
-const clearBtn = document.querySelector('.clear-tasks');
+const clearBtn = document.querySelector('.delete-users');
 const filter = document.querySelector('#filter');
 const firstName = document.querySelector('#fname');
 const lastName = document.querySelector('#lname');
@@ -18,6 +18,12 @@ loadAllEventListenners();
 function loadAllEventListenners() {
     // Add User event
     form.addEventListener('submit', addUsers);
+    // Remove user event
+    userList.addEventListener('click', removeUser);
+    // Delete all users
+    clearBtn.addEventListener('click', deleteAllUsers);
+    // Search for users
+    filter.addEventListener('keyup', searchForUser);
 }
 
 // Add USers function
@@ -64,8 +70,43 @@ function addUsers(e) {
         // Append Child (tr) to (tbody)
         tbody.appendChild(tr);
 
-        console.log(tbody);
+        // Append Child (tbody) to (table)
+        userList.appendChild(tbody);
+
+        // Clear inputs
+        firstName.value = '';
+        lastName.value = '';
     }
 
     e.preventDefault();
+}
+
+// Remove Users function
+function removeUser(e) {
+    if(e.target.parentElement.classList.contains('delete-item')) {
+        if(confirm('Are you sure?')) {
+            e.target.parentElement.parentElement.parentElement.remove();
+        }
+    }
+}
+
+// Delete all users function
+function deleteAllUsers(e) {
+    while(userList.firstChild) {
+        userList.removeChild(userList.firstChild);
+    }
+}
+
+// Search Users function 
+function searchForUser(e) {
+    const text = e.target.value.toLowerCase();
+    
+    document.querySelectorAll('tr').forEach(function(user){
+        const item = user.firstChild.textContent;
+        if(item.toLowerCase().indexOf(text) != -1) {
+            user.style.display = 'block';
+        } else {
+            user.style.display = 'none';
+        }
+    });
 }
