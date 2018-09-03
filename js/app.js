@@ -16,6 +16,8 @@ loadAllEventListenners();
 
 // Load all event listeners functions
 function loadAllEventListenners() {
+    // DOM Load event
+    document.addEventListener('DOMContentLoaded', getUsers);
     // Add User event
     form.addEventListener('submit', addUsers);
     // Remove user event
@@ -24,6 +26,58 @@ function loadAllEventListenners() {
     clearBtn.addEventListener('click', deleteAllUsers);
     // Search for users
     filter.addEventListener('keyup', searchForUser);
+}
+
+// Get Users from LS
+function getUsers(fname, lname, regDate) {
+    let users;
+    if(localStorage.getItem('users') === null) {
+        users = [];
+    } else {
+        users = JSON.parse(localStorage.getItem('users'));
+    }
+
+    users.forEach(function(fname, lname, regDate){
+        // Create table body(tbody) element
+        const tbody = document.createElement('tbody');
+        // Create table row(tr) element
+        const tr = document.createElement('tr')
+        // Create table cell(td) element
+        const td = document.createElement('td');
+        // add text content and append child
+        td.appendChild(document.createTextNode(fname));
+        // Create table cell(td)2 element
+        const td2 = document.createElement('td');
+        td2.appendChild(document.createTextNode(lname));
+        // Create table cell(td)3 element
+        const td3 = document.createElement('td');
+        td3.appendChild(document.createTextNode(regDate));
+        // Create table cell(td)4 element
+        const td4 = document.createElement('td');
+        // Create Link
+        const link = document.createElement('a');
+        // Add Class
+        link.className = 'delete-item';
+        // Add icon
+        link.innerHTML = '<i class="fa fa-remove"></i>';
+        // Append Link
+        td4.appendChild(link);
+
+        // Append td to tr
+        tr.appendChild(td);
+        // Append td2 to tr
+        tr.appendChild(td2);
+        // Append td3 to tr
+        tr.appendChild(td3);
+        // Append td4 to tr
+        tr.appendChild(td4);
+
+        // Append Child (tr) to (tbody)
+        tbody.appendChild(tr);
+
+        // Append Child (tbody) to (table)
+        userList.appendChild(tbody);
+    });
 }
 
 // Add USers function
@@ -73,12 +127,28 @@ function addUsers(e) {
         // Append Child (tbody) to (table)
         userList.appendChild(tbody);
 
+        // Store in LS
+        storeInLocalStorage(firstName.value, lastName.value, reg_date);
+
         // Clear inputs
         firstName.value = '';
         lastName.value = '';
     }
 
     e.preventDefault();
+}
+
+// Store in local storage function
+function storeInLocalStorage(fname, lname, regDate) {
+    let users;
+    if(localStorage.getItem('users') === null) {
+        users = [];
+    } else {
+        users = JSON.parse(localStorage.getItem('users'));
+    }
+
+    users.push(fname, lname, regDate);
+    localStorage.setItem('users', JSON.stringify(users));
 }
 
 // Remove Users function
