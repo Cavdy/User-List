@@ -38,7 +38,7 @@ function getUsers(user) {
         lName = [];
         reg_Date = [];
     } else {
-        fName = JSON.parse(localStorage.getItem('fname', 'lname', 'regDate'));
+        fName = JSON.parse(localStorage.getItem('fname'));
         lName = JSON.parse(localStorage.getItem('lname'));
         reg_Date = JSON.parse(localStorage.getItem('regDate'));
     }
@@ -178,8 +178,41 @@ function removeUser(e) {
     if(e.target.parentElement.classList.contains('delete-item')) {
         if(confirm('Are you sure?')) {
             e.target.parentElement.parentElement.parentElement.remove();
+            removeUserFromLocalStorage(e.target.parentElement.parentElement.parentElement);
         }
     }
+}
+
+// Delete from LS
+function removeUserFromLocalStorage(userlist) {
+    // let fName;
+    // let lName;
+    // let reg_Date;
+    // if(localStorage.getItem('fname') === null && localStorage.getItem('lname') === null && localStorage.getItem('regDate') === null) {
+    //     fName = [];
+    //     lName = [];
+    //     reg_Date = [];
+    // } else {
+    //     fName = JSON.parse(localStorage.getItem('fname'));
+    //     lName = JSON.parse(localStorage.getItem('lname'));
+    //     reg_Date = JSON.parse(localStorage.getItem('regDate'));
+    // }
+
+    // fName.forEach(function(user, index){
+    //     lName.forEach(function(user, index){
+    //         reg_Date.forEach(function(user, index){
+    //             if(userlist.textContent === user) {
+    //                 fName.splice(index, 1);
+    //                 lName.splice(index, 1);
+    //                 reg_Date.splice(index, 1);  
+    //             }
+    //         });
+    //     });
+    // });
+
+    // localStorage.setItem('fname', JSON.stringify(fName));
+    // localStorage.setItem('lname', JSON.stringify(lName));
+    // localStorage.setItem('regDate', JSON.stringify(reg_Date));
 }
 
 // Delete all users function
@@ -187,6 +220,14 @@ function deleteAllUsers(e) {
     while(userList.firstChild) {
         userList.removeChild(userList.firstChild);
     }
+
+    // Delete all from LS
+    deleteFromLS();
+}
+
+// Delete from LS
+function deleteFromLS() {
+    localStorage.clear();
 }
 
 // Search Users function 
