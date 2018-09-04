@@ -33,6 +33,7 @@ function getUsers(user) {
     let fName;
     let lName;
     let reg_Date;
+    
     if(localStorage.getItem('fname') === null && localStorage.getItem('lname') === null && localStorage.getItem('regDate') === null) {
         fName = [];
         lName = [];
@@ -43,51 +44,91 @@ function getUsers(user) {
         reg_Date = JSON.parse(localStorage.getItem('regDate'));
     }
 
-    fName.forEach(function(fname){
-        lName.forEach(function(lname){
-            reg_Date.forEach(function(regDate){
-                // Create table body(tbody) element
-                const tbody = document.createElement('tbody');
-                // Create table row(tr) element
-                const tr = document.createElement('tr')
-                // Create table cell(td) element
-                const td = document.createElement('td');
-                // add text content and append child
-                td.appendChild(document.createTextNode(fname));
-                // Create table cell(td)2 element
-                const td2 = document.createElement('td');
-                td2.appendChild(document.createTextNode(lname));
-                // Create table cell(td)3 element
-                const td3 = document.createElement('td');
-                td3.appendChild(document.createTextNode(regDate));
-                // Create table cell(td)4 element
-                const td4 = document.createElement('td');
-                // Create Link
-                const link = document.createElement('a');
-                // Add Class
-                link.className = 'delete-item';
-                // Add icon
-                link.innerHTML = '<i class="fa fa-remove"></i>';
-                // Append Link
-                td4.appendChild(link);
+    // let users = [fName, lName, reg_Date];
 
-                // Append td to tr
-                tr.appendChild(td);
-                // Append td2 to tr
-                tr.appendChild(td2);
-                // Append td3 to tr
-                tr.appendChild(td3);
-                // Append td4 to tr
-                tr.appendChild(td4);
+    // users.forEach(function(user, index, array){
+    //     // Create table body(tbody) element
+    //     const tbody = document.createElement('tbody');
+    //     // Create table row(tr) element
+    //     const tr = document.createElement('tr')
+    //     // Create table cell(td) element
+    //     const td = document.createElement('td');
+    //     // add text content and append child
+    //     td.appendChild(document.createTextNode(array[index][index]));
+    //     // Create table cell(td)2 element
+    //     const td2 = document.createElement('td');
+    //     td2.appendChild(document.createTextNode(array[index][index]));
+    //     // Create table cell(td)3 element
+    //     const td3 = document.createElement('td');
+    //     td3.appendChild(document.createTextNode(array[index][index]));
+    //     // Create table cell(td)4 element
+    //     const td4 = document.createElement('td');
+    //     // Create Link
+    //     const link = document.createElement('a');
+    //     // Add Class
+    //     link.className = 'delete-item';
+    //     // Add icon
+    //     link.innerHTML = '<i class="fa fa-remove"></i>';
+    //     // Append Link
+    //     td4.appendChild(link);
 
-                // Append Child (tr) to (tbody)
-                tbody.appendChild(tr);
+    //     // Append td to tr
+    //     tr.appendChild(td);
+    //     // Append td2 to tr
+    //     tr.appendChild(td2);
+    //     // Append td3 to tr
+    //     tr.appendChild(td3);
+    //     // Append td4 to tr
+    //     tr.appendChild(td4);
 
-                // Append Child (tbody) to (table)
-                userList.appendChild(tbody);
-            });
-        });
-    });
+    //     // Append Child (tr) to (tbody)
+    //     tbody.appendChild(tr);
+
+    //     // Append Child (tbody) to (table)
+    //     userList.appendChild(tbody);
+    // });
+
+    for(let i = 0; i < fName.length; i++) {
+        // Create table body(tbody) element
+        const tbody = document.createElement('tbody');
+        // Create table row(tr) element
+        const tr = document.createElement('tr')
+        // Create table cell(td) element
+        const td = document.createElement('td');
+        // add text content and append child
+        td.appendChild(document.createTextNode(fName[i]));
+        // Create table cell(td)2 element
+        const td2 = document.createElement('td');
+        td2.appendChild(document.createTextNode(lName[i]));
+        // Create table cell(td)3 element
+        const td3 = document.createElement('td');
+        td3.appendChild(document.createTextNode(reg_Date[i]));
+        // Create table cell(td)4 element
+        const td4 = document.createElement('td');
+        // Create Link
+        const link = document.createElement('a');
+        // Add Class
+        link.className = 'delete-item';
+        // Add icon
+        link.innerHTML = '<i class="fa fa-remove"></i>';
+        // Append Link
+        td4.appendChild(link);
+
+        // Append td to tr
+        tr.appendChild(td);
+        // Append td2 to tr
+        tr.appendChild(td2);
+        // Append td3 to tr
+        tr.appendChild(td3);
+        // Append td4 to tr
+        tr.appendChild(td4);
+
+        // Append Child (tr) to (tbody)
+        tbody.appendChild(tr);
+
+        // Append Child (tbody) to (table)
+        userList.appendChild(tbody);
+    }
 }
 
 // Add USers function
@@ -185,34 +226,30 @@ function removeUser(e) {
 
 // Delete from LS
 function removeUserFromLocalStorage(userlist) {
-    // let fName;
-    // let lName;
-    // let reg_Date;
-    // if(localStorage.getItem('fname') === null && localStorage.getItem('lname') === null && localStorage.getItem('regDate') === null) {
-    //     fName = [];
-    //     lName = [];
-    //     reg_Date = [];
-    // } else {
-    //     fName = JSON.parse(localStorage.getItem('fname'));
-    //     lName = JSON.parse(localStorage.getItem('lname'));
-    //     reg_Date = JSON.parse(localStorage.getItem('regDate'));
-    // }
+    let fName;
+    let lName;
+    let reg_Date;
+    if(localStorage.getItem('fname') === null && localStorage.getItem('lname') === null && localStorage.getItem('regDate') === null) {
+        fName = [];
+        lName = [];
+        reg_Date = [];
+    } else {
+        fName = JSON.parse(localStorage.getItem('fname'));
+        lName = JSON.parse(localStorage.getItem('lname'));
+        reg_Date = JSON.parse(localStorage.getItem('regDate'));
+    }
 
-    // fName.forEach(function(user, index){
-    //     lName.forEach(function(user, index){
-    //         reg_Date.forEach(function(user, index){
-    //             if(userlist.textContent === user) {
-    //                 fName.splice(index, 1);
-    //                 lName.splice(index, 1);
-    //                 reg_Date.splice(index, 1);  
-    //             }
-    //         });
-    //     });
-    // });
+    for(let i = 0; i < fName.length; i++) {
+        if(userlist.textContent === user) {
+            fName.splice(index, 1);
+            lName.splice(index, 1);
+            reg_Date.splice(index, 1);  
+        }
+    }
 
-    // localStorage.setItem('fname', JSON.stringify(fName));
-    // localStorage.setItem('lname', JSON.stringify(lName));
-    // localStorage.setItem('regDate', JSON.stringify(reg_Date));
+    localStorage.setItem('fname', JSON.stringify(fName));
+    localStorage.setItem('lname', JSON.stringify(lName));
+    localStorage.setItem('regDate', JSON.stringify(reg_Date));
 }
 
 // Delete all users function
