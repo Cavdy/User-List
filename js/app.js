@@ -44,9 +44,8 @@ function getUsers(user) {
         reg_Date = JSON.parse(localStorage.getItem('regDate'));
     }
 
-    // let users = [fName, lName, reg_Date];
 
-    // users.forEach(function(user, index, array){
+    // fName.forEach(function(user){
     //     // Create table body(tbody) element
     //     const tbody = document.createElement('tbody');
     //     // Create table row(tr) element
@@ -54,13 +53,13 @@ function getUsers(user) {
     //     // Create table cell(td) element
     //     const td = document.createElement('td');
     //     // add text content and append child
-    //     td.appendChild(document.createTextNode(array[index][index]));
+    //     td.appendChild(document.createTextNode(user));
     //     // Create table cell(td)2 element
     //     const td2 = document.createElement('td');
-    //     td2.appendChild(document.createTextNode(array[index][index]));
+    //     td2.appendChild(document.createTextNode(user));
     //     // Create table cell(td)3 element
     //     const td3 = document.createElement('td');
-    //     td3.appendChild(document.createTextNode(array[index][index]));
+    //     td3.appendChild(document.createTextNode(user));
     //     // Create table cell(td)4 element
     //     const td4 = document.createElement('td');
     //     // Create Link
@@ -229,27 +228,26 @@ function removeUserFromLocalStorage(userlist) {
     let fName;
     let lName;
     let reg_Date;
-    if(localStorage.getItem('fname') === null && localStorage.getItem('lname') === null && localStorage.getItem('regDate') === null) {
+    if(localStorage.getItem('fname') === null) {
         fName = [];
-        lName = [];
-        reg_Date = [];
+        //lName = [];
+        //reg_Date = [];
     } else {
         fName = JSON.parse(localStorage.getItem('fname'));
-        lName = JSON.parse(localStorage.getItem('lname'));
-        reg_Date = JSON.parse(localStorage.getItem('regDate'));
+        //lName = JSON.parse(localStorage.getItem('lname'));
+        //reg_Date = JSON.parse(localStorage.getItem('regDate'));
     }
 
-    for(let i = 0; i < fName.length; i++) {
+    fName.forEach(function(user, index){
         if(userlist.textContent === user) {
             fName.splice(index, 1);
-            lName.splice(index, 1);
-            reg_Date.splice(index, 1);  
         }
-    }
+    });
 
-    localStorage.setItem('fname', JSON.stringify(fName));
-    localStorage.setItem('lname', JSON.stringify(lName));
-    localStorage.setItem('regDate', JSON.stringify(reg_Date));
+    console.log(fName);
+    //localStorage.setItem('fname', JSON.stringify(fName));
+    //localStorage.setItem('lname', JSON.stringify(lName));
+    //localStorage.setItem('regDate', JSON.stringify(reg_Date));
 }
 
 // Delete all users function
